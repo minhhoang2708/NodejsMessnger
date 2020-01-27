@@ -1,18 +1,24 @@
 import express from "express";
-import connectDB from "./../config/connectDB";
-import ContactModel from "./../src/models/contact.model";
+import connectDB from "./config/connectDB";
+import ContactModel from "./models/contact.model";
+import configViewEngine from "./config/viewEngine";
 
 let app = express();
 
 // Connect MongoDB.
 connectDB();
 
-/**
- * function connectDB: Connect to MongoDatabase via URI.
- * [Arg]: None.
- * [Addtional]: Use package bluebird instead of promise.
- * [ReturnValue]: Promise <typeof mongoose>
- */
+//Config view engine
+configViewEngine(app);
+
+app.get('/', (req, res) => {
+  res.render("main/master");
+});
+
+app.get('/login-register', (req, res) => {
+  res.render("auth/loginRegister");
+});
+
 app.get('/database', async (req, res) => {
   try {
     let item = {
