@@ -1,3 +1,4 @@
 node_modules/
 package-lock.json
 sh/env.sh
+libraries/bower_components
