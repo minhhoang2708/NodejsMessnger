@@ -1,5 +1,5 @@
 let _getHomeController = (req, res) => {
-  res.render("main/master");
+  res.render("main/home/home");
 }
 
 module.exports = {
