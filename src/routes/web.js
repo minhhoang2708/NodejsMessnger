@@ -1,5 +1,6 @@
 import express from "express";
 import { home, auth } from "./../controllers/index";
+import { authValid } from "./../validation/index";
 
 let router = express.Router();
 
@@ -8,6 +9,7 @@ let initRouters = (app) => {
 
   router.get('/login-register', auth.getLoginRegister);
 
+  router.post('/register', authValid.register, auth.postRegister);
   // router.get('/database', async (req, res) => {
   //   try {
   //     let item = {
