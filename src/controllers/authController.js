@@ -1,13 +1,18 @@
 import {validationResult} from 'express-validator/check';
+import {authService} from './../services/index';
 
 const _getLoginRegister = (req, res) => {
-  res.render("auth/master");
+  res.render("auth/master", {
+    errors: req.flash("errors"),
+    successes: req.flash("successes")
+  });
 }
 const _getLogout = (req, res) => {
   // DO SOMETHING LATER
 }
-const _postRegister = (req, res) => {
+const _postRegister = async (req, res) => {
   let errorArr = [];
+  let successArr = [];
 
   let validationErrors = validationResult(req);
   if(!validationErrors.isEmpty()){
@@ -15,11 +20,20 @@ const _postRegister = (req, res) => {
     errors.forEach(item => {
       errorArr.push(item.msg);
     })
-    console.log(errorArr);
-    return;
+    req.flash("errors", errorArr);
+    return res.redirect('/login-register')
   }
-  console.log(req.body);
-
+  let userRegister = req.body;
+  try {
+    let userCreateSuccess = await authService.register(userRegister);
+    successArr.push(userCreateSuccess);
+    req.flash("successes", successArr);
+    return res.redirect('/login-register');
+  } catch (error) {
+    errorArr.push(error);
+    req.flash("errors", errorArr);
+    return res.redirect('/login-register');
+  }
 }
 module.exports = {
   getLoginRegister: _getLoginRegister,

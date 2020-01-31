@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
-module.exports = mongoose.Schema.model("user", new Schema({
+let Schema = mongoose.Schema;
+let UserSchemaOptions = {
   username: String,
   gender: { type: String, default: 'male' },
   phone: { type: String, default: null },
@@ -25,4 +26,15 @@ module.exports = mongoose.Schema.model("user", new Schema({
   createdAt: { type: Number, default: Date.now() },
   updatedAt: { type: Number, default: null },
   deletedAt: { type: Number, default: null }
-}));
+}
+let UserSchema = new Schema(UserSchemaOptions);
+UserSchema.statics = {
+  createNew(item){
+    return this.create(item);
+  },
+  findByEmail(email) {
+    return this.findOne({"local.email": email}).exec();
+  }
+}
+
+module.exports = mongoose.model("user", UserSchema);
