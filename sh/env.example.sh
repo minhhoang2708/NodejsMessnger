@@ -10,3 +10,9 @@
 # Config app enviroment variable
   export APP_HOST=***
   export APP_PORT=***
+
+# Config administrator email account.
+  export EMAIL_USERNAME=***
+  export EMAIL_PASSWORD=***
+  export EMAIL_HOST=***
+  export EMAIL_POST=***
