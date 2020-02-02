@@ -1,5 +1,5 @@
-import {validationResult} from 'express-validator/check';
-import {authService} from './../services/index';
+import { validationResult } from 'express-validator/check';
+import { authService } from './../services/index';
 
 const _getLoginRegister = (req, res) => {
   res.render("auth/master", {
@@ -15,7 +15,7 @@ const _postRegister = async (req, res) => {
   let successArr = [];
 
   let validationErrors = validationResult(req);
-  if(!validationErrors.isEmpty()){
+  if (!validationErrors.isEmpty()) {
     let errors = Object.values(validationErrors.mapped());
     errors.forEach(item => {
       errorArr.push(item.msg);
@@ -25,18 +25,35 @@ const _postRegister = async (req, res) => {
   }
   let userRegister = req.body;
   try {
-    let userCreateSuccess = await authService.register(userRegister);
+    let userCreateSuccess = await authService.register(userRegister, req.protocol, req.get("host"));
     successArr.push(userCreateSuccess);
     req.flash("successes", successArr);
-    return res.redirect('/login-register');
   } catch (error) {
     errorArr.push(error);
     req.flash("errors", errorArr);
+  } finally {
     return res.redirect('/login-register');
+  };
+}
+
+let _verifyAccount = async (req, res) => {
+  let errorArr = [],
+    successArr = [];
+  try {
+    let verifySuccess = await authService.verifyAccount(req.params.token);
+    successArr.push(verifySuccess);
+    req.flash("successes", successArr);
+  } catch (error) {
+    errorArr.push(error);
+    req.flash("errors", errorArr);
+  } finally {
+    res.redirect('/login-register');
   }
 }
+
 module.exports = {
   getLoginRegister: _getLoginRegister,
   getLogout: _getLogout,
   postRegister: _postRegister,
+  verifyAccount: _verifyAccount
 };

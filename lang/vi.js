@@ -12,6 +12,18 @@ export const transErrors = {
 }
 
 export const transSuccesses = {
-  userCreated: (email) => `<h1>Tài khoản <strong>${email}</strong> đã được đăng kí thành công, vui lòng kiểm tra email để active tài khoản và đăng nhập. Xin cảm ơn!</h1>.
+  userCreated: (email) => `Tài khoản <strong>${email}</strong> đã được đăng kí thành công, vui lòng kiểm tra email để active tài khoản và đăng nhập. Xin cảm ơn!.
+  `,
+  active_Success: 'Verify successfully. Bạn có thể đăng nhập vào ứng dụng.',
+  active_Fail: 'Verify Fail. Vui lòng kiểm tra lại. Xin cảm ơn.',
+  token_undefined: 'Token không tồn tại.',
+}
+
+export const transMailer = {
+  subject: '<b>Awesome Chat: Xác nhận kích hoạt tài khoản. </b>',
+  template: (linkVerify) => `<h2>Bạn nhận được email này vì đã đăng kí tài khoản trên ứng dụng Awesome Chat.</h2>
+  <h3>Vui lòng click vào liên kết bên dưới để xác nhận.</h3>
+  <h3><a href="${linkVerify}" target="blank">${linkVerify}</a></h3>
+  <h4>Nếu tin rằng email này là nhầm lẫn, xin hãy bỏ qua nó. Trân trọng.</h4>
   `,
 }
