@@ -43,6 +43,7 @@ let _register = (userRegister, protocolEmail, hostEmail) => {
         resolve(transSuccesses.userCreated(item.local.email));
       })
       .catch(async (error) => {
+        
         await UserModel.removeById(user._id);
         console.log(error);
         // remove user

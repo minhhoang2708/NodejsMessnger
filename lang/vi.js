@@ -9,6 +9,8 @@ export const transErrors = {
   email_is_be_used: 'Email này đã được sử dụng, vui lòng kiểm tra lại!',
   email_is_be_deleted: 'Tài khoản này đã bị gỡ khỏi hệ thống, nếu tin đây là hiểu lầm, vui lòng liên hệ với Administrator để tiến hành kiểm tra lại. Xin cảm ơn!',
   email_is_not_be_actived: 'Tài khoản này chưa được kích hoạt, vui lòng đăng nhập vào email và tiến hành kích hoạt. Xin cảm ơn!',
+  login_failed: 'Sai tài khoản hoặc mật khẩu, vui lòng kiểm tra lại. ',
+  server_error: 'Server hiện đang không hoạt động đúng cách. Vui lòng thử lại sau. Xin lỗi vì sự bất tiện này.',
 }
 
 export const transSuccesses = {
@@ -17,6 +19,7 @@ export const transSuccesses = {
   active_Success: 'Verify successfully. Bạn có thể đăng nhập vào ứng dụng.',
   active_Fail: 'Verify Fail. Vui lòng kiểm tra lại. Xin cảm ơn.',
   token_undefined: 'Token không tồn tại.',
+  login_success: (username) => `Xin chào ${username}, chúc bạn một ngày mới tốt lành.`,
 }
 
 export const transMailer = {

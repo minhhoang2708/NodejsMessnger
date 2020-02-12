@@ -24,7 +24,7 @@ function showRegisterForm() {
     });
     $('.error').removeClass('alert alert-danger').html('');
   }
-  
+ 
   function openLoginModal() {
     setTimeout(function() {
       $('#loginModal').modal('show');
