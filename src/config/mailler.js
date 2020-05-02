@@ -6,8 +6,8 @@ let adminHost = process.env.EMAIL_HOST;
 let adminPort = process.env.EMAIL_PORT;
 
 // Return Promise
-let sendMail = (to, subject, htmlContent) => {
-  let transporter = nodeMailer.createTransport({
+const sendMail = (to, subject, htmlContent) => {
+  const transporter = nodeMailer.createTransport({
     host: adminHost,
     port: adminPort,
     secure: false, // use SSL - TLS. TODO: Khi đẩy lên server thì sửa lại là TRUE
@@ -16,7 +16,7 @@ let sendMail = (to, subject, htmlContent) => {
       pass: adminPassword
     }
   })
-  let options = {
+  const options = {
     from: adminEmail,
     to: to,
     subject: subject,

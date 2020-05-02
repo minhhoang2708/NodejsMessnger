@@ -20,6 +20,7 @@ export const transSuccesses = {
   active_Fail: 'Verify Fail. Vui lòng kiểm tra lại. Xin cảm ơn.',
   token_undefined: 'Token không tồn tại.',
   login_success: (username) => `Xin chào ${username}, chúc bạn một ngày mới tốt lành.`,
+  logout_success: "Đăng xuất tài khoản thành công, hẹn gặp lại bạn!"
 }
 
 export const transMailer = {

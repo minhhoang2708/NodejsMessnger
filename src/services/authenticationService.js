@@ -1,17 +1,17 @@
 
-import UserModel from '../models/userModel';
 import bcrypt from 'bcrypt';
 import uuidv4 from 'uuid/v4';
 import { transErrors, transSuccesses, transMailer } from '../../lang/vi';
 import sendMail from '../config/mailler';
+import UserModel from '../models/userModel';
 
-let saltRounds = 7;
+const saltRounds = 7;
 
-let _register = (userRegister, protocolEmail, hostEmail) => {
+const _register = (userRegister, protocolEmail, hostEmail) => {
   // return new Promise để đảm bảo cho UserModel.createNew(item) được hoàn thành xong!
   return new Promise(async (resolve, reject) => {
     // Kiểm tra email đã tồn tại hay chưa
-    let userByEmail = await UserModel.findByEmail(userRegister.email);
+    const userByEmail = await UserModel.findByEmail(userRegister.email);
     if (userByEmail) {
       // Đã được tạo nhưng bị xóa rồi!
       if (userByEmail.deletedAt != null) {
@@ -54,7 +54,7 @@ let _register = (userRegister, protocolEmail, hostEmail) => {
   });
 }
 
-let _verifyAccount = (token) => {
+const _verifyAccount = (token) => {
   return new Promise(async (resolve, reject) => {
     let userByToken = await UserModel.findByToken(token);
     if (!userByToken) {
